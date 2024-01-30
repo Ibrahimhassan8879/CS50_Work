@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}
+Charge
+{% endblock %}
+
+{% block main %}
+<form action="/charge" method="POST">
+    <table>
+        <tr>
+            <td>
+                <div class="mb-3">
+                    <input type="Credit holder name" name ="Credit holder name" placeholder="Enter Card holder name" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+            <td>
+                <div class="mb-3">
+                    <input type="Credit card number" name = "Credit card number" placeholder="Enter Credit card number" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="mb-3">
+                    <input type="Date" name = "Date" placeholder="Enter Card expiration date MM/YY" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+            <td>
+                <div class="mb-3">
+                    <input type="Security number" name = "Security number" placeholder="Enter Security number" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <div class="mb-3">
+                    <input type="cash" name = "charge" placeholder="Enter Amount of charge" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <button type="submit" class="btn btn-primary">Charge !</button>
+    </div>
+</form>
+{% endblock %}

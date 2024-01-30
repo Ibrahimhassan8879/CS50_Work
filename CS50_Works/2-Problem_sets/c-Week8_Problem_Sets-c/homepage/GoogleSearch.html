@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>GoogleSearch</title>
+    </head>
+    <body>
+        <header class = "centeredBlue">
+            Welcome to google search page !
+        </header>
+        <div>This website is for first experiment of web development</div>
+        <main>
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="btn btn-outline-primary btn-lg"  href="index.html">Home Page</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="btn btn-success" aria-current="page" href="GoogleSearch.html">Google Search</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-danger" href="YoutubeSearch.html">Youtube Search</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-warning" href="about.html">About</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <form action="https://www.google.com/search" method="get">
+        <br><br>
+        <input class="form-control me-2" type="search" name="q" autocomplete="off" placeholder="Search Box">
+        <button class="btn btn-outline-success" type="submit">Google Search !</button>
+        </form>
+        <div class="centered">
+          <img src="Google_Search.png" class="bg" alt="center">
+        </div>
+        </main>
+        <footer id="footer">
+            <div>
+                Copyrights &#169; 4/9/2023 From Ibrahim Hassan
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %}
+Query
+{% endblock %}
+
+{% block main %}
+<form action="/query" method="POST">
+    <table>
+        <tr>
+            <td>
+                <div class="mb-3">
+                    <input type="username_entered" name ="username_entered" placeholder="username" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+            <td>
+                <div class="mb-3">
+                    <input type="symbol_entered" name = "symbol_entered" placeholder="Symbol" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="mb-3">
+                    <input type="Date" name = "timestampfrom" placeholder="Enter transactions from" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+            <td>
+                <div class="mb-3">
+                    <input type="Date" name = "timestampto" placeholder="Enter transactions to" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <div class="mb-3">
+                    <input  type ="text" name = "transaction_type" placeholder="Enter transaction type" autocomplete="off" id="symbol" class="form-control mx-auto w-auto">
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <button type="submit" class="btn btn-primary">query</button>
+    </div>
+</form>
+<table>
+    <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Transaction_ID</th>
+    </tr>
+    {% for transaction in transactions %}
+
+    <tr>
+        <td>{{transaction.symbol}}</td>
+        <td>{{transaction.name}}</td>
+        <td>{{transaction.shares}}</td>
+        <td>{{transaction.price}}</td>
+        <td>{{transaction.type}}</td>
+        <td>{{transaction.Timestamp}}</td>
+        <td>{{transaction.transaction_id}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

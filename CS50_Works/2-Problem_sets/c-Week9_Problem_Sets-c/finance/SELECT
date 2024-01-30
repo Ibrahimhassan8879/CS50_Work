@@ -1,0 +1,134 @@
+    for stock in stocks:
+        for i in range(len(stocks)):
+        Valid_data = lookup(stock['symbol'])
+
+        stock['price']  = Valid_data["price"]
+        stock['name']   = Valid_data["name"]
+        stock['symbole'] = Valid_data["symbol"]
+        stock['shares'] = db.execute("SELECT shares FROM stocks WHERE user_id = ? AND symbol =? ",session["user_id"],stock["symbol"])
+
+    return render_template("/index.html",stocks = stocks)
+
+
+
+
+
+
+
+
+
+    """Show portfolio of stocks"""
+    "check if the user is new"
+    rows = db.execute("SELECT * FROM stocks WHERE user_id = ?",session["user_id"])
+    total_spent = 0
+    if len(rows) == 0:
+        return render_template("/index.html")
+
+    for row in rows:
+        row['total'] =0
+        Valid_data = lookup(row['symbol'])
+        row['price']  = Valid_data["price"]
+        row['name']   = Valid_data["name"]
+        row['symbol'] = Valid_data["symbol"]
+        row['total'] = row['shares'] * row['price']
+        total_spent += row['total']
+
+    cash = db.execute("SELECT cash FROM users WHERE id = ?" , session["user_id"])
+    cash = round(cash[0]['cash'],2)
+    total_money =  total_spent
+    return render_template("/index.html",stocks = rows , total = total_money , cash = cash)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/", methods = ["GET"])
+@login_required
+def index():
+    """Show portfolio of stocks"""
+
+#check if the user is new"
+    rows = db.execute("SELECT * FROM stocks WHERE user_id = ?",session["user_id"])
+    total_spent = 0
+    if len(rows) == 0:
+        return render_template("/index.html")
+
+    for row in rows:
+        Valid_data = lookup(row['symbol'])
+        for key in Valid_data:
+            row[key] = Valid_data[key]
+
+        row['total'] = round(row['shares'] * row['price'],2)
+        total_spent += row['total']
+
+    Total_account_cash = db.execute("SELECT cash FROM users WHERE id = ?" , session["user_id"])
+    cash = int(Total_account_cash[0]['cash'])
+    total_money =  int(total_spent+ Total_account_cash[0]['cash'])
+    return render_template("/index.html",stocks = rows , total = total_money , cash = cash )
+
+
+
+
+{% extends "layout.html" %}
+{% block title %}
+Index Page
+{% endblock %}
+{% block div %}
+{{Alert}}
+{% endblock %}
+
+{% block main %}
+<form>
+<table style="border : 1px solid black;border-collapse: collapse;">
+    <thead>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Price</th>
+        <th>Total</th>
+    </thead>
+
+    {% for stock in port %}
+    {% if stock.port != 0 %}
+    <tbody>
+        <td>{{stock["symbol"]}}</td>
+        <td>{{stock["name"]}}</td>
+        <td>{{stock["SUM(shares)"] }}</td>
+        <td>{{ prices[loop.index0] | usd }}</td>
+        <td>{{ ((prices[loop.index0])*stock["SUM(shares)"]) | usd }}</td>
+    </tbody>
+    {% endif %}
+    {% endfor %}
+
+    <footer>
+        <tr>
+            <td class="border-1px fw-bold text-center" colspan="4">Cash</td>
+            <td style="border-0 text-end">{{ balance | usd }}</td>
+        </tr>
+        <tr>
+            <td class="border-1px fw-bold text-center" colspan="4">total</td>
+            <td style="border-1px w-bold text-end;">{{ total_bal | usd }}</td>
+        </tr>
+    </footer>
+
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded' , function() {
+                let correct_button = document.querySelector('#correct');
+                let incorrect_buttons = document.querySelectorAll('.incorrect')
+                let message = document.querySelector('.message')
+
+                correct_button.addEventListener('click', function() {
+                    correct_button.style.backgroundColor = "green";
+                    message.innerHTML = "That is the correct answer !"
+
+                })
+                for (let i = 0; i <incorrect_buttons.length; i++)
+                {
+                    incorrect_buttons[i].addEventListener('click' , function(){
+                        incorrect_buttons[i].style.backgroundColor = "red";
+                        message.innerHTML = "Oh, That Incorrect answer";
+                    })
+                }
+                let answer = document.querySelector("#free-button");
+                let free_message = document.querySelector('.free-message')
+
+                answer.addEventListener('click', function(){
+                    if (document.querySelector("input").value == "rome")
+                    {
+                        answer.style.background = "green";
+                        free_message.innerHTML = "That is the correct answer !";
+                        x++;
+                    }
+                    else
+                    {
+                        answer.style.background = "red";
+                        free_message.innerHTML = "Oh, That Incorrect answer";
+                    }
+                })
+
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <p>
+                        <h3>
+                            In which Italian city can you find the Colosseum?
+                        </h3>
+                        <br>
+                        <button class="incorrect">Venice</button>
+                        <button id="correct">Rome</button>
+                        <button class="incorrect">Naples</button>
+                        <button class="incorrect" value="rome">rome</button>
+                        <p class="message"></p>
+                        <br>
+                        <br>
+                </p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>
+                    In which country is it illegal guinea pigs ?
+                </h3>
+                <input type="text" id="input">
+                <button type="submit" id="free-button">check answer</button>
+                <p class="free-message"></p>
+                <p class="score"></p>
+            </div>
+        </div>
+
+    </body>
+</html>
